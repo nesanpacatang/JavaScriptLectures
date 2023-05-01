@@ -1,6 +1,6 @@
 let x;
-const fruits = ['apple', 'pear', 'orange'];
-const berries = ['strawberry', 'blueberry', 'mango'];
+const fruits = ["apple", "pear", "orange"];
+const berries = ["strawberry", "blueberry", "mango"];
 
 //Nesting Arrays - array within an array
 
@@ -17,7 +17,7 @@ const berries = ['strawberry', 'blueberry', 'mango'];
 // x = allFruits[1][2];
 
 //concat() - concatenate arrays
-// x = fruits.concat(berries);
+x = fruits.concat(berries);
 
 //spread operator (...)  concatenate with
 x = [...fruits, ...berries];
@@ -30,7 +30,7 @@ x = arr.flat();
 x = Array.isArray(fruits);
 
 // from() - create an array from an array like value
-x = Array.from('birthday');
+x = Array.from("birthday");
 
 // of() - Create an array from a set of values
 const a = 1;
