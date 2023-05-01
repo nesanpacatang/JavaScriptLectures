@@ -17,4 +17,21 @@
 let myString = "developer";
 let myNewString = myString.charAt(0).toUpperCase() + myString.slice(1);
 
-console.log(myNewString); // Output: "Developer"
+console.log(myNewString); //"Developer"
+
+// const myString = "developer";
+// myNewString = myString.toUpperCase().charAt();
+// myNewString = myNewString + "eveloper";
+// console.log(myNewString);
+
+// const myString = "developer";
+// myNewString = myString.toUpperCase().charAt() + myString.substring(1, 9);
+// console.log(myNewString);
+
+// const myString = "developer";
+// myNewString = myString.toUpperCase().charAt() + myString.slice(1);
+// console.log(myNewString);
+
+// const myString = "developer";
+// myNewString = myString.toUpperCase().charAt() + myString.slice(-8);
+// console.log(myNewString);

@@ -1,17 +1,31 @@
-const x = Math.floor(Math.random() * 100 + 1);
-const y = Math.floor(Math.random() * 50 + 1);
+let x;
+let y;
+
+x = Math.floor(Math.random() * 100 + 1);
+y = Math.floor(Math.random() * 50 + 1);
 
 // sum
-const sum = x;
+const sumOutput = `${x} + ${y} = ${x + y}`;
+console.log(sumOutput);
 
-// x = 1 - 100;
-// y = 1 - 50;
+// difference
 
-// //Get a random number between 1 and 100
-// x = Math.floor(Math.random() * 100000 + 1);
+const differenceOutput = `${x} - ${y} = ${x - y}`;
+console.log(differenceOutput);
 
-// // Get a random number/decimal between 0 and 1
-// x = Math.random();
+// product
+const productOutput = `${x} * ${y} = ${x * y}`;
+console.log(productOutput);
+
+//quotient
+
+const quotientOutput = `${x} / ${y} = ${x / y}`;
+console.log(quotientOutput);
+
+//rm
+
+const rmOutput = `${x} % ${y} = ${x % y}`;
+console.log(rmOutput);
 
 // console.log(sumOutput); // 31 + 15 = 46
 // console.log(differenceOutput); // 31 - 15 = 16
