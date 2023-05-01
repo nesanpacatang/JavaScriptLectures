@@ -36,19 +36,19 @@ x **= 5;
 // Equal to (comparing the value, not the type)
 x = 2 == "2";
 
-//equal to (Type and value)
+// //equal to (Type and value)
 x = 2 === "2";
 
-// equal to (just the value, not the type)
+// // equal to (just the value, not the type)
 x = 2 != "2";
 
-//equal to (Type and value)
+// //equal to (Type and value)
 x = 2 !== "2";
 
-//Greater than and less than
-x = 10 > 5;
-x = 10 < 5;
-x = 10 <= 5;
-x = 10 >= 5;
+// //Greater than and less than
+// x = 10 > 5;
+// x = 10 < 5;
+// x = 10 <= 5;
+// x = 10 >= 5;
 
 console.log(x);

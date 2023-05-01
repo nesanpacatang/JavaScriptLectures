@@ -1,6 +1,9 @@
 //String
-const firstName = "Ryan";
+const firstName = "Nesan";
 // console.log(firstName);
+
+// const output = firstName;
+// console.log(output, typeof output);
 
 // Number
 const age = 30;

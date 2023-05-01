@@ -9,7 +9,7 @@ console.log("Hello World");
 // log multiple values
 console.log(20, "Hello", true);
 
-// log a vaialble
+// log a varialble
 
 const x = 100;
 console.log(x);
@@ -26,4 +26,4 @@ console.group("simple");
 console.log(x);
 console.error("Alert");
 console.warn("Warning");
-console.group();
+console.groupEnd();

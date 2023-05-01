@@ -19,3 +19,18 @@ console.log(myNewString); // 'Developer'
 1. You can use the `charAt()` method as well as `string[index]` to get the character at a specific index.
 2. The `.toUpperCase()` method will make the entire string uppercase
 3. `substring()` or `slice()` will return a specific portion of a string
+
+<details>
+<summary>Click for Solution</summary>
+There are many ways to do this. Let's take a look:
+
+```JavaScript
+// Solution 1
+
+
+
+// Solution 2
+
+```
+
+</details>
