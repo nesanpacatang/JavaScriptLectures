@@ -1,13 +1,13 @@
 let x;
 
 // Challenge 1
-// const arr = [1, 2, 3, 4, 5];
+const arr = [1, 2, 3, 4, 5];
 
-// arr.push(6);
-// arr.unshift(0);
-// arr.reverse();
+arr.push(6);
+arr.unshift(0);
+arr.reverse();
 
-// console.log(arr);
+console.log(arr);
 
 // Challenge 2
 

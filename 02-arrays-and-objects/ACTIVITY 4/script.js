@@ -29,7 +29,7 @@ const {
   status: { object },
 } = library;
 
-console.log("firstbook");
+console.log(firstbook);
 
 // Step 4
 
