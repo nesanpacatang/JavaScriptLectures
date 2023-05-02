@@ -2,27 +2,27 @@ let x;
 
 // Creating an object
 const person = {
-  name: 'Maria Clara',
+  name: "Maria Clara",
   age: 30,
   isAdmin: true,
   address: {
-    street: '143 Paghanapin St.',
-    city: 'Cavite',
-    province: 'Dasmarinas',
+    street: "143 Paghanapin St.",
+    city: "Cavite",
+    province: "Dasmarinas",
   },
-  hobbies: ['music', 'sports'],
+  hobbies: ["music", "sports"],
 };
 
 //Accessing object properties
 x = person.name; //Dot notation
-x = person['age']; //Bracket Notation
+x = person["age"]; //Bracket Notation
 x = person.address.city;
 x = person.address.province;
 x = person.hobbies[0];
 
 //Updating properties
-person.name = 'Padre Damaso';
-person['isAdmin'] = false;
+person.name = "Padre Damaso";
+person["isAdmin"] = false;
 
 //Deleting Properties
 delete person.age;
@@ -41,10 +41,10 @@ x = person; //Dot notation
 
 //Keys with multiple words
 const person2 = {
-  'first name': 'Ryan',
-  lastName: 'Azur',
+  "first name": "Ryan",
+  lastName: "Azur",
 };
 
-x = person2['first name'];
+x = person2["first name"];
 
 console.log(x);

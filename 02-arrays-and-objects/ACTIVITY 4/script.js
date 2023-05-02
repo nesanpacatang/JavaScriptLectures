@@ -18,13 +18,18 @@ x = library.status["read"] = true;
 console.log(x);
 
 // Step 3
+// Destructuring
+const { title } = library;
+console.log(title);
+
+// rename the title to firstbook
 const {
   title: firstbook,
   author,
   status: { object },
 } = library;
 
-console.log(firstbook);
+console.log("firstbook");
 
 // Step 4
 
