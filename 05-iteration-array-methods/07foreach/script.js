@@ -1,7 +1,7 @@
 //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
 //foreach - just loops through and it doesnt return anything
 
-const socials = ['Twitter', 'LinkedIn', 'Facebook', 'Instagram'];
+const socials = ["Twitter", "LinkedIn", "Facebook", "Instagram"];
 
 // console.log(socials.__proto__);
 
@@ -26,10 +26,10 @@ const socials = ['Twitter', 'LinkedIn', 'Facebook', 'Instagram'];
 
 //Array of Objects
 const socialObjs = [
-  { name: 'Twitter', url: 'https://twitter.com' },
-  { name: 'Facebook', url: 'https://facebook.com' },
-  { name: 'Linkedin', url: 'https://linkedin.com' },
-  { name: 'Instagram', url: 'https://instagram.com' },
+  { name: "Twitter", url: "https://twitter.com" },
+  { name: "Facebook", url: "https://facebook.com" },
+  { name: "Linkedin", url: "https://linkedin.com" },
+  { name: "Instagram", url: "https://instagram.com" },
 ];
 
 //To access the objects

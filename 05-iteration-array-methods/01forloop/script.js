@@ -6,9 +6,9 @@
 // incrementExpression - Expression that will be executed after each iteration of the loop
 // Statement - Code that will be executed each time the loop is run (FOO)
 
-// for (let i = 0; i <= 10; i++) {
-//   console.log('Number ' + i);
-// }
+for (let i = 0; i <= 10; i++) {
+  console.log("Number " + i);
+}
 
 // counter            output
 //   0              Number 0
@@ -21,23 +21,23 @@
 //   10             Number 10
 //   11
 
-//if it hits 7, output it is the lucky number, otherwise output the number
-// for (let i = 0; i <= 10; i++) {
-//   if (i === 7) {
-//     console.log("7 is the lucky number");
-//   } else {
-//     console.log("Number " + i);
-//   }
-// }
-
-//nested loops  ; (i,j)
+// if it hits 7, output it is the lucky number, otherwise output the number
 for (let i = 0; i <= 10; i++) {
-  // console.log("Number " + i);
-
-  for (let j = 1; j <= 5; j++) {
-    console.log(`${i} * ${j} = ${i * j}`);
+  if (i === 7) {
+    console.log("7 is the lucky number");
+  } else {
+    console.log("Number " + i);
   }
 }
+
+// //nested loops  ; (i,j)
+// for (let i = 0; i <= 10; i++) {
+//   // console.log("Number " + i);
+
+//   for (let j = 1; j <= 5; j++) {
+//     console.log(`${i} * ${j} = ${i * j}`);
+//   }
+// }
 
 // I             J                 Output
 // 0                               Number 0

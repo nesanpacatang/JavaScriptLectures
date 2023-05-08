@@ -1,22 +1,22 @@
 function registerUser(user) {
-  return user + ' is registered';
+  return user + " is registered";
 }
 // console.log(user); //this will produce an error. Because it is outside of the scope
-console.log(registerUser('Ryan'));
+console.log(registerUser("Ryan"));
 
 //Default Params
 //Old Way
 function registerUser(user) {
   if (!user) {
-    user = 'Bot';
+    user = "Bot";
   }
-  return user + ' is registered';
+  return user + " is registered";
 }
 console.log(registerUser());
 
 //ES6 Default parameter
-function registerUser(user = 'Bot') {
-  return user + ' is registered';
+function registerUser(user = "Bot") {
+  return user + " is registered";
 }
 console.log(registerUser());
 
@@ -38,7 +38,7 @@ function sum1(...numbers) {
 console.log(sum1(1, 2, 3, 4, 5, 6, 100));
 
 //Objects as Params
-//we wil not always get primitive values, more often, you are going to get objects
+//we will not always get primitive values, more often, you are going to get objects
 
 function loginUser(user) {
   return `The user ${user.name} with the id of ${user.id} is logged in`;
@@ -46,11 +46,11 @@ function loginUser(user) {
 
 const user = {
   id: 1,
-  name: 'Alden',
+  name: "Alden",
 };
 
 console.log(loginUser(user));
-console.log(loginUser({ id: 2, name: 'Catcat' }));
+console.log(loginUser({ id: 2, name: "Catcat" }));
 
 //Arrays as params
 //get a random number from an array

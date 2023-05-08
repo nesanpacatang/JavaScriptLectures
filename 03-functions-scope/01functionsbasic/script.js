@@ -1,6 +1,6 @@
 // Define a function
 function sayHEllo() {
-  console.log('Hello World');
+  console.log("Hello World");
 }
 
 //Invoke, execute or call a function
@@ -21,9 +21,9 @@ add(5, 10);
 
 //return a value - declare a function, use parameters, return
 function subtract(num1, num2) {
-  console.log('Before the return');
+  console.log("Before the return");
   return num1 - num2;
-  console.log('After the return');
+  console.log("After the return");
 }
 
 const result = subtract(10, 2);

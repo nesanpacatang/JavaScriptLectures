@@ -37,7 +37,7 @@ console.log(x);
 
 const arr = [1, 2, 3, 4];
 // arr = [1, 2, 3, 4, 5];
-// we can manipulate arrays and objects usinf const
+// we can manipulate arrays and objects using const
 arr.push(5);
 console.log(arr);
 
@@ -45,7 +45,7 @@ const person = {
   name: "Nesan",
 };
 
-person.name = "Alden";
+person.name = "Nesan";
 person.email = "nesan@gmail.com";
 console.log(person);
 
