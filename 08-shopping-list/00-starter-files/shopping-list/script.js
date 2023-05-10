@@ -1,165 +1,199 @@
-const form = document.querySelector("#item-form");
-const itemList = document.querySelector(".items");
-const clearBtn = document.querySelector(".btn-clear");
-const filter = document.querySelector("#filter");
-const itemInput = document.querySelector("#item-input");
+const itemForm = document.getElementById("item-form");
+const itemInput = document.getElementById("item-input");
+const itemList = document.getElementById("item-list");
+const clearBtn = document.getElementById("clear");
+const itemFilter = document.getElementById("filter");
+const formBtn = itemForm.querySelector("button");
+let isEditMode = false;
 
-// Load items from localStorage on page load
-document.addEventListener("DOMContentLoaded", loadItemsFromStorage);
-
-// Add item to the list
-form.addEventListener("submit", addItem);
-
-// Remove item from the list
-itemList.addEventListener("click", removeItem);
-
-// Clear all items from the list
-clearBtn.addEventListener("click", clearItems);
-
-// Filter the items
-filter.addEventListener("keyup", filterItems);
-
-// Edit item in the list
-itemList.addEventListener("click", editItem);
-
-// Function to add item to the list
-function addItem(e) {
-  e.preventDefault();
-  // Get the input value
-  const newItem = itemInput.value.trim();
-  if (newItem !== "") {
-    // Create a new li element
-    const li = document.createElement("li");
-    li.className = "item-list";
-    li.appendChild(document.createTextNode(newItem));
-
-    // Add a delete button
-    const button = document.createElement("button");
-    button.className = "remove-item btn-link text-red";
-
-    button.appendChild(document.createTextNode("X"));
-    li.appendChild(button);
-
-    itemList.style.display = "flex";
-    clearBtn.style.display = "Block";
-    filter.style.display = "Block";
-
-    // Add li to the ul
-    itemList.appendChild(li);
-    // Save to localStorage
-    saveItemToStorage(newItem);
-    // Clear the input field
-    itemInput.value = "";
-  }
+function displayItems() {
+  const itemsFromStorage = getItemsFromStorage();
+  itemsFromStorage.forEach((item) => addItemToDOM(item));
+  checkUI();
 }
 
-// Function to remove item from the list
-function removeItem(e) {
-  if (e.target.classList.contains("btn-link")) {
-    if (confirm("Are you sure? ")) {
-      const li = e.target.parentElement;
-      itemList.removeChild(li);
-      // Remove from localStorage
-      removeItemFromStorage(li.textContent);
+function onAddItemSubmit(e) {
+  e.preventDefault();
+
+  const newItem = itemInput.value;
+  //Validate Input
+  if (itemInput.value === "") {
+    alert("Please add an item");
+    return;
+  }
+  //check for edit mode
+  if (isEditMode) {
+    const itemToEdit = itemList.querySelector(".edit-mode");
+
+    removeItemFromStorage(itemToEdit.textContent);
+    itemToEdit.classList.remove("edit-mode");
+    itemToEdit.remove();
+    isEditMode = false;
+  } else {
+    if (checkIfItemExist(newItem)) {
+      alert("That item already exists!");
+      return;
     }
   }
+
+  //Create item DOM Element
+  addItemToDOM(newItem);
+
+  //Add item to local storage
+  addItemToStorage(newItem);
+
+  checkUI();
+  itemInput.value = "";
 }
 
-// Function to clear all items from the list
+function addItemToDOM(item) {
+  //Create List item
+  const li = document.createElement("li");
+  li.appendChild(document.createTextNode(item));
+
+  const button = createButton("remove-item btn-link text-red");
+  li.appendChild(button);
+
+  //Add li to the DOM
+  itemList.appendChild(li);
+}
+
+function createButton(classes) {
+  const button = document.createElement("button");
+  button.className = classes;
+
+  const icon = createIcon("fa-solid fa-xmark");
+  button.appendChild(icon);
+  return button;
+}
+
+function createIcon(classes) {
+  const icon = document.createElement("i");
+  icon.className = classes;
+  return icon;
+}
+
+function addItemToStorage(item) {
+  const itemsFromStorage = getItemsFromStorage();
+
+  //Add new item to Array
+  itemsFromStorage.push(item);
+
+  //Convert to JSON string and set to local storage
+  localStorage.setItem("items", JSON.stringify(itemsFromStorage));
+}
+
+function getItemsFromStorage() {
+  let itemsFromStorage;
+
+  if (localStorage.getItem("items") === null) {
+    itemsFromStorage = [];
+  } else {
+    itemsFromStorage = JSON.parse(localStorage.getItem("items"));
+  }
+  return itemsFromStorage;
+}
+
+function onClickItem(e) {
+  if (e.target.parentElement.classList.contains("remove-item")) {
+    removeItem(e.target.parentElement.parentElement);
+  } else {
+    setItemtoEdit(e.target);
+  }
+}
+
+function checkIfItemExist(item) {
+  const itemsFromStorage = getItemsFromStorage();
+  return itemsFromStorage.includes(item);
+}
+
+function setItemtoEdit(item) {
+  isEditMode = true;
+  //handle the selected item changing the effects, and showing it to textbox
+  itemList
+    .querySelectorAll("li")
+    .forEach((i) => i.classList.remove("edit-mode"));
+  formBtn.innerHTML = '<i class="fa-solid fa-pen"></i>  Update Item';
+  itemInput.value = item.textContent; //get the value of the li to the text box
+  formBtn.style.backgroundColor = "#228B22"; //color of the button
+  item.classList.add("edit-mode"); //color
+}
+
+function removeItem(item) {
+  if (confirm("Are you sure")) {
+    //remove item from DOM
+    item.remove();
+
+    //remove item from storage
+    removeItemFromStorage(item.textContent);
+
+    checkUI();
+  }
+}
+
+function removeItemFromStorage(item) {
+  let itemsFromStorage = getItemsFromStorage();
+
+  //Filter out the item to be removed
+  itemsFromStorage = itemsFromStorage.filter((i) => i !== item);
+
+  //Reset to localstorage
+  localStorage.setItem("items", JSON.stringify(itemsFromStorage));
+}
 
 function clearItems() {
-  // const list = document.getElementById("item-list");
-  // const clearAllButton = document.getElementById("clear");
-
-  // Hide the list items
-  const items = itemList.querySelectorAll(".item-list");
-  items.forEach(function (item) {
-    item.style.display = "none";
-    clearBtn.style.display = "none";
-    filter.style.display = "none";
-
-    // clearAllButton.addEventListener("click", function () {
-    // list.innerHTML = "";
-  });
-
-  // Clear localStorage
-  localStorage.clear();
+  while (itemList.firstChild) {
+    itemList.removeChild(itemList.firstChild);
+  }
+  //clear from localstorage
+  localStorage.removeItem("items");
+  checkUI();
 }
 
-// Function to filter the items
 function filterItems(e) {
+  const items = itemList.querySelectorAll("li");
   const text = e.target.value.toLowerCase();
-  const items = itemList.querySelectorAll(".item-list");
-  items.forEach(function (item) {
+  //   console.log(text);
+  items.forEach((item) => {
     const itemName = item.firstChild.textContent.toLowerCase();
+    // console.log(itemName);
+
     if (itemName.indexOf(text) != -1) {
-      item.style.display = "block";
+      item.style.display = "flex";
     } else {
       item.style.display = "none";
     }
   });
 }
 
-// // Function to edit item in the list
-// function editItem(e) {
-//   if (e.target.classList.contains("item-list")) {
-//     // Put item in edit mode
-//     const li = e.target;
-//     const itemText = li.textContent;
-//     itemInput.value = itemText;
-//     // Remove the li from the list
-//     itemList.removeChild(li);
-//     // Remove from localStorage
-//     removeItemFromStorage(itemText);
-//   }
-// }
+function checkUI() {
+  itemInput.value = "";
+  const items = itemList.querySelectorAll("li");
 
-function editItem(e) {
-  if (e.target.classList.contains("item-list")) {
-    // Put item in edit mode
-    const li = e.target;
-    const itemText = li.textContent;
-    itemInput.value = itemText;
-    // Remove the li from the list
-    itemList.removeChild(li);
-    // Remove from localStorage
-    removeItemFromStorage(itemText);
-
-    // Change text and style of Add Item button
-    const addItemBtn = document.querySelector(".btn-add");
-    addItemBtn.textContent = "Update Item";
-    addItemBtn.style.backgroundColor = "green";
-    addItemBtn.style.color = "white";
-  }
-}
-
-// Function to save item to localStorage
-function saveItemToStorage(item) {
-  let items;
-  if (localStorage.getItem("items") === null) {
-    items = [];
+  if (items.length === 0) {
+    clearBtn.style.display = "none";
+    itemFilter.style.display = "none";
   } else {
-    items = JSON.parse(localStorage.getItem("items"));
+    clearBtn.style.display = "block";
+    itemFilter.style.display = "block";
   }
-  items.push(item);
-  localStorage.setItem("items", JSON.stringify(items));
+
+  formBtn.innerHTML = '<i class="fa-solid fa-plus"></i> Add Item';
+  formBtn.style.backgroundColor = "#333";
+
+  isEditMode = false;
 }
 
-// Function to load items from localStorage
-function loadItemsFromStorage() {
-  let items;
-  if (localStorage.getItem("items") === null) {
-    items = [];
-  } else {
-    items = JSON.parse(localStorage.getItem("items"));
-  }
+//initialize app
+function init() {
+  //Event Listeners
+  itemForm.addEventListener("submit", onAddItemSubmit);
+  itemList.addEventListener("click", onClickItem);
+  clearBtn.addEventListener("click", clearItems);
+  itemFilter.addEventListener("input", filterItems);
+  document.addEventListener("DOMContentLoaded", displayItems);
+
+  checkUI();
 }
-items.forEach(function (item) {});
 
-// // Get all the remove buttons
-// const removeButtons = document.querySelectorAll("#item-list");
-
-// // Loop through each remove button and add a click event listener
-
-// const itemtoremove = document.getElementById("item-list");
-// itemList.remove();
+init();
