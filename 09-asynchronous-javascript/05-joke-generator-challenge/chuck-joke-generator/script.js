@@ -1,12 +1,13 @@
+const xhr = new XMLHttpRequest();
 document.addEventListener("DOMContentLoaded", function () {
-  var joke = document.getElementById("joke-btn");
-  joke.addEventListener("click", generateJoke);
+  var newjokebtn = document.getElementById("jokebtn");
+  newjokebtn.addEventListener("click", generateJoke);
   generateJoke();
 });
 
 function generateJoke() {
   var xhr = new XMLHttpRequest();
-  xhr.open("GET", "https://api.chucknorris.io/jokes/random", true);
+  //   xhr.open("Get", "https://api.chucknorris.io/jokes/random", true);
   xhr.onreadystatechange = function () {
     if (xhr.readyState === 4 && xhr.status === 200) {
       var response = JSON.parse(xhr.responseText);
@@ -16,31 +17,31 @@ function generateJoke() {
       displayError("Failed to fetch joke");
     }
   };
+  xhr.open("Get", "https://api.chucknorris.io/jokes/random", true);
   xhr.send();
 }
 
 function displayJoke(joke) {
-  var jokeContainer = document.getElementById("jokeContainer");
-  jokeContainer.innerHTML = joke;
+  var jokebtn = document.getElementById("joke");
+  jokebtn.innerHTML = joke;
 }
 
 function displayError(message) {
-  var jokeContainer = document.getElementById("jokeContainer");
-  jokeContainer.innerHTML = "<p>Error: " + message + "</p>";
+  var jokebtn = document.getElementById("joke");
+  jokebtn.innerHTML = "<p>Error: " + message + "</p>";
 }
-
 // const xhr = new XMLHttpRequest();
 
-// xhr.open('Get', 'https://api.github.com/users/tropangpotchiph/repos');
+// xhr.open("Get", "https://api.chucknorris.io/jokes/random");
 // xhr.onreadystatechange = function () {
 //   if (this.readyState === 4 && this.status === 200) {
 //     console.log(JSON.parse(this.responseText));
 //     const data = JSON.parse(this.responseText);
-//     data.forEach((repo) => {
-//       const li = document.createElement('li');
-//       //repo name ; repo description
-//       li.innerHTML = `<strong> ${repo.name} </strong> - ${repo.description}`;
-//       document.querySelector('#results').appendChild(li);
+//     data.forEach(() => {
+//       const li = document.createElement("joke");
+//       document
+//         .querySelector("https://api.chucknorris.io/jokes/random")
+//         .appendChild("https://api.chucknorris.io/jokes/random");
 //     });
 //   }
 // };
