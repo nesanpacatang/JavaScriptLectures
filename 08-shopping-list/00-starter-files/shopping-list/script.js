@@ -58,6 +58,7 @@ function addItemToDOM(item) {
   itemList.appendChild(li);
 }
 
+// ***********to add many items
 function createButton(classes) {
   const button = document.createElement("button");
   button.className = classes;
@@ -67,6 +68,7 @@ function createButton(classes) {
   return button;
 }
 
+// **************to add icon to all item added
 function createIcon(classes) {
   const icon = document.createElement("i");
   icon.className = classes;
