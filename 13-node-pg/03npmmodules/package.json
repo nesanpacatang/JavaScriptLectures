@@ -1,0 +1,19 @@
+{
+  "name": "nodeplayground",
+  "version": "1.0.0",
+  "description": "Sample Node App",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "author": "Nesan",
+  "license": "MIT",
+  "keywords": [],
+  "dependencies": {
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
